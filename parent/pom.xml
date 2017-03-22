@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.code-house.eaio-uuid</groupId>
+        <artifactId>jackson</artifactId>
+        <version>2.8.7-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.code-house.eaio-uuid.jackson</groupId>
+    <artifactId>parent</artifactId>
+    <packaging>pom</packaging>
+
+    <name>UUID :: Jackson :: Parent</name>
+    <description>Parent pom for managing dependencies and plugin configurations.</description>
+
+    <properties>
+        <uuid.version>3.4.1</uuid.version>
+        <jackson.version>2.8.7</jackson.version>
+
+        <karaf.version>4.0.8</karaf.version>
+        <geronimo-atinject-spec.version>1.0</geronimo-atinject-spec.version>
+
+        <pax-exam.version>4.9.1</pax-exam.version>
+
+        <maven-bundle-plugin.version>3.2.0</maven-bundle-plugin.version>
+        <maven-release-plugin.version>2.8.2</maven-release-plugin.version>
+        <servicemix-depends-plugin.version>1.2</servicemix-depends-plugin.version>
+
+        <!-- Build env -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.code-house.eaio-uuid.jackson</groupId>
+                <artifactId>adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.code-house.eaio-uuid.jackson</groupId>
+                <artifactId>features</artifactId>
+                <version>${project.version}</version>
+                <classifier>features</classifier>
+                <type>xml</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.code-house.eaio-uuid</groupId>
+                <artifactId>uuid</artifactId>
+                <version>${uuid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.code-house.jackson</groupId>
+                <artifactId>features</artifactId>
+                <version>${jackson.version}</version>
+                <classifier>features</classifier>
+                <type>xml</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.karaf.features</groupId>
+                <artifactId>org.apache.karaf.features.core</artifactId>
+                <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>apache-karaf</artifactId>
+                <version>${karaf.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>apache-karaf</artifactId>
+                <version>${karaf.version}</version>
+                <type>tar.gz</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-atinject_1.0_spec</artifactId>
+                <version>${geronimo-atinject-spec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-el_2.2_spec</artifactId>
+                <version>${geronimo-el-2.2-spec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-junit4</artifactId>
+                <version>${pax-exam.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-container-karaf</artifactId>
+                <version>${pax-exam.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.servicemix.tooling</groupId>
+                    <artifactId>depends-maven-plugin</artifactId>
+                    <version>${servicemix-depends-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-http</artifactId>
+                            <version>2.10</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                    <configuration>
+                        <instructions>
+                            <Export-Package>org.code_house.eaio.jackson.*</Export-Package>
+                        </instructions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

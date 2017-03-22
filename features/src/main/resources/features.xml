@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="eaio-uuid-jackson-${project.version}"
+    xmlns="http://karaf.apache.org/xmlns/features/v1.4.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://karaf.apache.org/xmlns/features/v1.4.0
+        http://karaf.apache.org/xmlns/features/v1.4.0
+    ">
+
+    <repository>mvn:org.code-house.jackson/features/${jackson.version}/xml/features</repository>
+
+    <feature name="eaio" version="${uuid.version}">
+        <bundle dependency="true">mvn:org.code-house.eaio-uuid/uuid/${uuid.version}</bundle>
+    </feature>
+
+    <feature name="eaio-uuid-jackson" version="${project.version}">
+        <feature dependency="true" version="${jackson.version}">jackson-databind</feature>
+        <feature dependency="true" version="${uuid.version}">eaio</feature>
+
+        <bundle>mvn:org.code-house.eaio-uuid.jackson/adapter/${project.version}</bundle>
+    </feature>
+
+</features>

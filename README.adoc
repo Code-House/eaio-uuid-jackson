@@ -1,0 +1,17 @@
+= Eaio UUID Jackson
+
+This repository hosts an a very small piece of code needed to turn com.eaio.uuid.UUID type into valid string representation
+as well as read it from string representation. By default Jackson does have support for "fromString" deserialization however
+it does not allow to enrich "fromString" types.
+
+== Usage
+Pulling in eaio types in your code requires no extra work, however making Jackson aware of custom type logic will require
+such small amount of object mapping customization:
+```java
+ObjectMapper mapper = new ObjectMapper().registerModule(new EaioUUIDModule());
+```
+
+== Copyright and Licensing
+Copyright © 2017 Code-House, Łukasz Dywicki. Free use of this software is granted under the terms of the Apache Software License.
+
+See the link:LICENSE[LICENSE] file for details.
