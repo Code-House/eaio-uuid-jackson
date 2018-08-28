@@ -13,29 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.code_house.eaio.uuid.jackson.jackson;
+package org.code_house.eaio.uuid.jackson.adapter;
 
 import com.eaio.uuid.UUID;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import java.io.IOException;
 
 /**
- * Deserializer for eaio uuid.
+ * Serializer for eaio uuid.
  *
  * @author Łukasz Dywicki &lt;luke@code-house.org&gt;
  */
-public class EaioUUIDDeserializer extends StdDeserializer<UUID> {
+public class EaioUUIDSerializer extends StdSerializer<UUID> {
 
-    public EaioUUIDDeserializer() {
+    public EaioUUIDSerializer() {
         super(UUID.class);
     }
 
     @Override
-    public UUID deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-        return new UUID(p.getValueAsString());
+    public void serialize(UUID value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+        gen.writeObject(value.toString());
     }
 
 }
