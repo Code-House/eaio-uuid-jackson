@@ -20,7 +20,7 @@
         <uuid.version>3.4.1</uuid.version>
         <jackson.version>2.8.8</jackson.version>
 
-        <karaf.version>4.0.8</karaf.version>
+        <karaf.version>4.0.10</karaf.version>
         <geronimo-atinject-spec.version>1.0</geronimo-atinject-spec.version>
 
         <pax-exam.version>4.9.1</pax-exam.version>
